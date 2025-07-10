@@ -9,6 +9,7 @@ const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
 
+const mongoose = require('mongoose');
 const app = express();
 
 app.use('/public', express.static(process.cwd() + '/public'));
@@ -17,6 +18,8 @@ app.use(cors({origin: '*'})); //USED FOR FCC TESTING PURPOSES ONLY!
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+mongoose.connect(process.env.MONGO_URI).then(console.log('Connected to database')).catch(err=>console.error(err));
 
 //Index page (static HTML)
 app.route('/')

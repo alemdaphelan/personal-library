@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const book = require('./book');
 const commentSchema = new mongoose.Schema({
     bookID : {
         type:mongoose.Schema.Types.ObjectId,

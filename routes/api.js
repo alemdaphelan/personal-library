@@ -34,7 +34,7 @@ module.exports = function (app) {
     
     .post(async function (req, res){
       let title = req.body.title;
-      if(!title) return res.send('missing required field title');
+      if(!title || !checkValidText(title)) return res.send('missing required field title');
       const book = await addBook(title);
       if(!book){
         return res.send('Could not create book');
